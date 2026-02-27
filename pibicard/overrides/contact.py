@@ -224,7 +224,7 @@ def upload_vcard_to_carddav(vcard_string):
     
   vcard_url = f"{url}/{uid}.vcf"
   # Check if vCard exists
-  response = requests.get(vcard_url, auth=HTTPBasicAuth(username, password))
+  response = requests.get(vcard_url, auth=HTTPBasicAuth(username, password), verify=False)
   
   if response.status_code in [200, 404]:
     response = requests.put(vcard_url, data=vcard_string, headers={"Content-Type": "text/vcard"}, auth=HTTPBasicAuth(username, password))
